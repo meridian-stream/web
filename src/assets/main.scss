@@ -1,0 +1,96 @@
+$primary: #EF626C;
+$secondary: #84DCCF;
+$border-radius: 0rem;
+
+$white:    #FFFFFF !default;
+$gray-100: #EFEFEF !default;
+$gray-200: #DFDFDF !default;
+$gray-300: #CFCFCF !default;
+$gray-400: #AFAFAF !default;
+$gray-500: #9F9F9F !default;
+$gray-600: #7F7F7F !default;
+$gray-700: #5F5F5F !default;
+$gray-800: #3F3F3F !default;
+$gray-900: #1F1F1F !default;
+$black:    #0F0F0F !default;
+
+$body-bg: $black;
+$body-color: $white;
+$card-bg: $gray-900;
+$list-group-bg: $gray-900;
+$list-group-color: inherit;
+$input-group-addon-bg: $gray-800;
+$table-border-color: $black;
+$input-disabled-bg: $gray-900;
+$input-disabled-border-color: $gray-800;
+
+@import "bootstrap/scss/bootstrap";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+@import "dropzone/dist/dropzone.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    font-family: 'Open Sans';
+    font-size: 16px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#app {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    header {
+        background-color: #FFFFFF;
+
+        .form-control {
+            border-color: $body-bg;
+        }
+    }
+
+    main {
+        margin-top: 48px;
+    }
+
+    footer {
+        border-top: 1px solid $gray-900;
+    }
+}
+
+h1, h2, h3, h4, h5 {
+
+}
+
+h1 {
+    font-size: 1.5rem;
+}
+
+h2 {
+    font-size: 1.25rem;
+}
+
+h3 {
+    font-size: 1.125rem;
+}
+
+h4 {
+    font-size: 1rem;
+}
+
+.card {
+    overflow: hidden;
+    border: none;
+}
+
+hr {
+    border-top: 1px solid $gray-800;
+}
