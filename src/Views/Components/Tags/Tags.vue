@@ -1,5 +1,5 @@
 <template>
-    <div class="badge bg-primary me-1" v-for="(tag, i) in tags" @click="filter(tag.name)">
+    <div class="badge bg-primary me-1 tag" v-for="(tag, i) in tags" @click="filter(tag.name)">
         {{ tag.name }}
     </div>
 </template>
@@ -30,3 +30,9 @@
         },
     };
 </script>
+
+<style>
+    .tag {
+        cursor: pointer;
+    }
+</style>

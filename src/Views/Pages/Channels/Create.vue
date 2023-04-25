@@ -62,7 +62,12 @@
             submit () {
                 this.createChannelRequest.submitTo(Server.getInstance())
                     .then(channel => {
-                        console.log(channel);
+                        this.$router.push({
+                            name: 'cp.channels.view',
+                            params: {
+                                id: channel.slug || channel.id,
+                            },
+                        })
                     })
             }
         },

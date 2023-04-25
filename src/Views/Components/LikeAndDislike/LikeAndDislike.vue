@@ -1,10 +1,10 @@
 <template>
     <div class="btn-group">
-        <div class="btn btn-outline-primary" :class="{ 'bg-primary text-dark': content.auth_user.likes }" @click="like(content.auth_user.likes)">
-            <i class="fa-solid fa-thumbs-up"></i>
+        <div class="btn btn-outline-primary" :class="{ 'bg-primary text-dark': content.authUser.likes }" @click="like(content.authUser.likes)">
+            <i class="fa-solid fa-thumbs-up" :class="{ 'text-white': content.authUser.likes }"></i>
         </div>
-        <div class="btn btn-outline-primary" :class="{ 'bg-primary text-dark': content.auth_user.dislikes }" @click="dislike(content.auth_user.dislikes)">
-            <i class="fa-solid fa-thumbs-down"></i>
+        <div class="btn btn-outline-primary" :class="{ 'bg-primary text-dark': content.authUser.dislikes }" @click="dislike(content.authUser.dislikes)">
+            <i class="fa-solid fa-thumbs-down" :class="{ 'text-white': content.authUser.dislikes }"></i>
         </div>
     </div>
 </template>
@@ -25,14 +25,14 @@
                 if (!alreadyLikes) {
                     (new CreateLikeRequest(this.content.id)).submitTo(Server.getInstance())
                         .then(() => {
-                            this.content.auth_user.likes = true;
-                            this.content.auth_user.dislikes = false;
+                            this.content.authUser.likes = true;
+                            this.content.authUser.dislikes = false;
                         })
                 } else {
                     (new DeleteLikeRequest(this.content.id)).submitTo(Server.getInstance())
                         .then(() => {
-                            this.content.auth_user.likes = false;
-                            this.content.auth_user.dislikes = false;
+                            this.content.authUser.likes = false;
+                            this.content.authUser.dislikes = false;
                         });
                 }
             },
@@ -40,14 +40,14 @@
                 if (!alreadyDislikes) {
                     (new CreateDislikeRequest(this.content.id)).submitTo(Server.getInstance())
                         .then(() => {
-                            this.content.auth_user.likes = false;
-                            this.content.auth_user.dislikes = true;
+                            this.content.authUser.likes = false;
+                            this.content.authUser.dislikes = true;
                         })
                 } else {
                     (new DeleteDislikeRequest(this.content.id)).submitTo(Server.getInstance())
                         .then(() => {
-                            this.content.auth_user.likes = false;
-                            this.content.auth_user.dislikes = false;
+                            this.content.authUser.likes = false;
+                            this.content.authUser.dislikes = false;
                         });
                 }
             },

@@ -209,10 +209,11 @@
             },
         },
         mounted () {
-            this.getFolder(this.authUser.folder.id);
+            this.getFolder(this.folderId);
         },
         props: [
             'authUser',
+            'folderId',
             'hasSelectableFiles',
         ],
     }

@@ -8,6 +8,7 @@
         <RouterView
             :authUser="user"
             @openGallery="openGallery"
+            @openReport="openReport"
             @openRegister="isOpen.register = true"
             @openSubscribe="openSubscribe"
             @setUser="getUser"
@@ -18,7 +19,7 @@
     <Subscribe
         v-if="isOpen.subscribe"
         @close="isOpen.subscribe = false"
-        @openAddCard="isOpen.addCard = true"
+        @openAddCard="openAddCard"
         @openLogin="isOpen.login = true;"
         @success="subscriptionAdded"
         :channel="subChannel"
@@ -48,9 +49,15 @@
         @fileSelected="fileSelected"
         @close="isOpen.gallery = false"
         :authUser="user"
+        :folder-id="galleryFolder.id"
         :has-selectable-files="gallerySelectableFiles"
         v-if="user !== null && isOpen.gallery"
     ></Gallery>
+    <Report
+        @close="isOpen.report = false; reportContent = null;"
+        :content="reportContent"
+        v-if="isOpen.report"
+    ></Report>
 </template>
 
 <script>
@@ -65,6 +72,7 @@
     import Gallery from "./Views/Pages/Partials/Gallery/Gallery.vue";
     import NewFolder from "./Views/Pages/Partials/Gallery/NewFolder.vue";
     import Register from "./Views/Pages/Partials/Register.vue";
+    import Report from "./Views/Pages/Partials/Report.vue";
 
     export default {
         components: {
@@ -76,21 +84,25 @@
             Gallery,
             NewFolder,
             Register,
+            Report,
         },
         data () {
             return {
                 galleryFolder: null,
                 gallerySelectableFiles: false,
                 getUserRequest: new GetUserRequest,
-                newFolderFolder: null,
                 isOpen: {
                     addCard: false,
                     gallery: false,
                     login: false,
                     register: false,
+                    report: false,
                     subscribe: false,
                 },
+                newFolderFolder: null,
+                onCardAdded: null,
                 onLoginRegister: null,
+                reportContent: null,
                 subChannel: null,
                 user: null,
             };
@@ -98,6 +110,12 @@
         methods: {
             cardAdded (card) {
                 this.user.cards.push(card);
+                if (this.onCardAdded !== null) {
+                    this.onCardAdded(card);
+                    setTimeout(() => {
+                        this.onCardAdded = null;
+                    }, 250);
+                }
             },
             fileSelected (file) {
                 if (this.gallerySelectableFiles) {
@@ -127,7 +145,12 @@
             },
             logout () {
                 Server.setAPIKey(null);
+                this.$router.push({ name: 'home' })
                 this.user = null;
+            },
+            openAddCard (onCardAdded) {
+                this.onCardAdded = onCardAdded;
+                this.isOpen.addCard = true;
             },
             openGallery (folder, selectableFiles, onSelect) {
                 console.log(folder);
@@ -145,6 +168,10 @@
             openNewFolder (folder) {
                 this.newFolderFolder = folder;
                 this.isOpen.newFolder = true;
+            },
+            openReport (content) {
+                this.isOpen.report = true;
+                this.reportContent = content;
             },
             openSubscribe (channel) {
                 this.onLoginRegister = () => {

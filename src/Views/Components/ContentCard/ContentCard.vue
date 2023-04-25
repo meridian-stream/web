@@ -2,7 +2,7 @@
     <div class="content-card card bg-dark mb-3">
         <div class="content-card-image-container" @click="$router.push({ name: 'contents.view', params: { id: content.id } })">
             <Image :src="content.image.url" :alt="content.title"></Image>
-            <div class="content-card-duration small">00:34:03</div>
+            <div class="content-card-duration small">{{ duration }}</div>
             <div class="content-card-subscribers-only text-secondary" v-if="content.is_subscribers_only">
                 <i class="fa-solid fa-lock"></i>
             </div>
@@ -10,7 +10,7 @@
         <div class="card-body pt-0 pb-2 px-2">
             <div class="row">
                 <div class="col-12 text-nowrap">
-                    <ChannelBadge v-if="content.channel.image !== null" :channel="content.channel" class="float-start me-2" style="margin-top: -2rem;"></ChannelBadge>
+                    <ChannelBadge v-if="content.channel.image !== null" :channel="content.channel" class="float-start me-2" style="margin-top: -2.5rem;"></ChannelBadge>
                     <router-link :to="{ name: 'channels.view', params: { id: content.channel.slug || content.channel.id } }">
                         <span class="small text-muted">
                             {{ content.channel.name }}
@@ -43,6 +43,27 @@
             Stars,
             ChannelBadge,
             Tags,
+        },
+        computed: {
+            duration () {
+                let hours = 0;
+                let minutes = 0;
+                let seconds = 0;
+
+                let durationSeconds = this.content.video.duration;
+
+                hours = Math.floor(durationSeconds / 3600);
+                minutes = Math.floor(durationSeconds / 60);
+                seconds = Math.floor(durationSeconds % 60);
+
+                let toReturn = '';
+                if (hours > 0) {
+                    toReturn += hours + ':';
+                }
+                toReturn += (minutes < 10 ? '0' + minutes : minutes) + ':';
+                toReturn += (seconds < 10 ? '0' + seconds : seconds);
+                return toReturn;
+            },
         },
         props: [
             'content',

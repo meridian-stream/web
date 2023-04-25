@@ -11,7 +11,11 @@ class CreateSubscriptionRequest extends BaseRequest
                 channel_id: null,
                 product_id: null,
             },
-            {},
+            {
+                card_id: null,
+                channel_id: null,
+                product_id: null,
+            },
         );
     }
 }

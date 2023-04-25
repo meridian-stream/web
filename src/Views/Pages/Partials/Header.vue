@@ -14,7 +14,7 @@
                     <div class="btn btn-outline-primary" v-if="authUser === null" @click="$emit('openLogin')">Log In</div>
 
                     <div class="dropdown dropdown-menu-end" v-if="authUser !== null">
-                        <div class="profile-pic" data-bs-toggle="dropdown" aria-expanded="false" >
+                        <div class="profile-pic" data-bs-toggle="dropdown" aria-expanded="false">
                             <Image :src="authUser.image?.url || '/images/user-placeholder.png'"></Image>
                         </div>
                         <ul class="dropdown-menu dropdown-menu-dark">

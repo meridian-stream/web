@@ -17,12 +17,13 @@
                         <div class="col-6">
                             <input type="time" id="published_at_time" name="published_at_time" class="form-control" v-model="publishedAtTime">
                         </div>
+                        <SpecificError :field="'published_at'" :form="publishContentRequest" v-if="publishContentRequest !== null"></SpecificError>
                     </div>
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-8 offset-4">
-                    <button class="btn btn-outline-primary" @click="update">Save</button>
+                    <button class="btn btn-outline-primary" @click="update" v-html="publishContentRequest?.isLoading ?? false ? '<i class=\'fa-solid fa-pulse fa-spinner\'></i>' : 'Save'"></button>
                 </div>
             </div>
         </div>
@@ -33,8 +34,14 @@
     import GetContentRequest from "../../../../Requests/GetContentRequest";
     import Server from "../../../../Servers/Server";
     import PublishContentRequest from "../../../../Requests/PublishContentRequest";
+    import GeneralErrors from "../../../Components/Form/GeneralErrors.vue";
+    import SpecificError from "../../../Components/Form/SpecificError.vue";
 
     export default {
+        components: {
+            GeneralErrors,
+            SpecificError,
+        },
         data () {
             return {
                 publishedAt: new Date(),
@@ -54,7 +61,7 @@
                 }
                 this.publishContentRequest.submitTo(Server.getInstance())
                     .then(content => {
-                        console.log(content.published_at);
+
                     })
             },
         },
@@ -67,17 +74,9 @@
                         this.showDates = true;
                         this.publishedAt = publishedAt;
                         this.publishedAtDate = publishedAt.getFullYear() + '-' + (publishedAt.getMonth() < 9 ? '0' + (publishedAt.getMonth() + 1) : (publishedAt.getMonth() + 1)) + '-' + publishedAt.getUTCDate();
-                        this.publishedAtTime = publishedAt.getUTCHours() + ':' + publishedAt.getUTCMinutes();
+                        this.publishedAtTime = publishedAt.getUTCHours() + ':' + (publishedAt.getUTCMinutes() < 10 ? '0' + publishedAt.getUTCMinutes() : publishedAt.getUTCMinutes());
                     }
                 })
         },
-        watch: {
-            publishedAtDate (newValue, oldValue) {
-                console.log(newValue);
-            },
-            publishedAtTime (newValue, oldValue) {
-                console.log(newValue);
-            },
-        }
     }
 </script>

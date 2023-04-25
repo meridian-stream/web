@@ -18,7 +18,7 @@
                     <div class="col-6">
                         <div class="text-end">
                             <FollowButton :channel="channel" class="mb-2 mb-sm-0"></FollowButton>
-                            <SubscribeButton @openSubscribe="$emit('openSubscribe')" :auth-user="authUser" :channel="channel"></SubscribeButton>
+                            <SubscribeButton v-if="channel.is_accepting_subscriptions" @openSubscribe="$emit('openSubscribe')" :auth-user="authUser" :channel="channel" class="ms-2"></SubscribeButton>
                         </div>
                     </div>
                 </div>

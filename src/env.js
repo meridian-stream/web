@@ -8,4 +8,5 @@ export default {
         publishable_key: "pk_test_51J7kf2GJpypwBcwPtbsoCuuzW8Fp6c5mM75mcb0KeWEBxDiDEQV1yPrOb9V3M5f3qOdVOt9ouAqMZyG57BDvNGZm00VAUoK6dv",
     },
     url: 'meridian.stream',
+    payout_threshold: 100,
 };

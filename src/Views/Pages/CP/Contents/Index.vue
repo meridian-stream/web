@@ -1,10 +1,17 @@
 <template>
     <div class="row">
         <div class="col-6">
-            <h2 class="py-2">Channel Contents</h2>
+            <h2>Contents</h2>
         </div>
         <div class="col-6 text-end">
-            <a href="#" class="btn btn-sm btn-outline-primary" @click="$router.push({ name: 'cp.channels.contents.edit', params: { id: $route.params.id, contentId: 'new' } })">Create</a>
+            <a
+                class="btn btn-sm btn-outline-primary"
+                href="#"
+                @click="$router.push({ name: 'cp.channels.contents.edit', params: { id: $route.params.id, contentId: 'new' } })"
+            >
+                <i class="fa-solid fa-plus"></i>
+                Create
+            </a>
         </div>
     </div>
     <div class="row">
@@ -29,11 +36,14 @@
                             <button
                                 class="btn btn-sm btn-outline-primary"
                                 @click="edit(content)"
-                                :disabled="content.is_published ? 'disabled' : ''"
+                                :disabled="content.is_published"
                             >
                                 <i class="fa-solid fa-pencil"></i>
                             </button>
                         </td>
+                    </tr>
+                    <tr v-if="contents !== null && contents.length < 1">
+                        <td colspan="99">You don't have any content yet!</td>
                     </tr>
                     <tr>
                         <td colspan="99" class="text-center">

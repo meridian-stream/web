@@ -1,7 +1,7 @@
 <template>
     <div class="container py-2">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-8 col-lg-6">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-body">
                         <h1>Profile</h1>
@@ -12,13 +12,13 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="name" class="col-4 col-form-label text-end">Profile picture</label>
+                            <label class="col-4 col-form-label text-end">Profile picture</label>
                             <div class="col-8">
                                 <div class="user-profile-pic" @click="$emit('openGallery', authUser.folder, true, onImageSelected)">
                                     <Image :src="imageUrl" :key="imageUrl"></Image>
                                 </div>
                                 <br>
-                            <button class="btn btn-outline-secondary" @click="$emit('openGallery', authUser.folder, true, onImageSelected)">Change Image</button>
+                                <button class="btn btn-outline-secondary" @click="$emit('openGallery', authUser.folder, true, onImageSelected)">Change Image</button>
                             </div>
                         </div>
                         <hr>

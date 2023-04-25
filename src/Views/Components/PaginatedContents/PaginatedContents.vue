@@ -8,9 +8,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-12 col-md-6 col-lg-4 col-xl-3 text-center">
-                <div class="btn btn-outline-primary" @click="loadMore">
-                    {{ request.isLoading ? 'Loading...' : 'Load More' }}
-                </div>
+                <div class="btn btn-outline-primary" @click="loadMore" v-html="request.isLoading ? '<i class=\'fa-solid fa-spinner fa-pulse\'></i>' : 'Load More'"></div>
             </div>
         </div>
     </div>

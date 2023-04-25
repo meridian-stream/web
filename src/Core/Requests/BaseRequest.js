@@ -98,6 +98,7 @@ class BaseRequest
         }
 
         this.setLoading(true);
+        this.clearErrors();
 
         return new Promise((resolve, reject) => {
             server[this.method](this.uri, this.getData()).then(rawResponse => {

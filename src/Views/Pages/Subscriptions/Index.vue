@@ -1,13 +1,13 @@
 <template>
-    <div class="container-fluid py-2">
-        <div class="row" v-if="authUser !== null">
+    <div class="container py-2" v-if="authUser !== null">
+        <div class="row">
             <div class="col-12">
                 <h1>My Subscriptions</h1>
             </div>
             <div class="col-12 col-md-4" v-for="(subscription, i) in authUser.subscriptions">
                 <div class="card">
                     <div class="card-header text-center">
-                        <ChannelBadge class="d-inline-block" :channel="subscription.channel" size="large"></ChannelBadge><br>
+                        <ChannelBadge class="d-inline-block" v-if="subscription.channel.image !== null" :channel="subscription.channel" size="large"></ChannelBadge><br>
                         <h2>{{ subscription.channel.name }}</h2>
                         ${{ (subscription.product.price / 100).toFixed(2) }} / month
                     </div>
@@ -18,7 +18,7 @@
                         <div v-if="subscription.cancelled_at === null">
                             <i class="fa-solid fa-circle-check text-success"></i> Renews {{ subscription.nice_renews_at }}
                         </div>
-                        <p class="small text-muted">Billed on {{ subscription.card.brand }} ending in {{ subscription.card.last4 }} ({{ subscription.card.expiry_month }}/{{ subscription.card.expiry_year }})</p>
+                        <p class="small text-muted mb-0">Billed on {{ subscription.card.brand }} ending in {{ subscription.card.last4 }} ({{ subscription.card.expiry_month < 10 ? '0' + subscription.card.expiry_month : subscription.card.expiry_month }}/{{ subscription.card.expiry_year }})</p>
                     </div>
                     <div class="card-footer">
                         <div class="btn btn-outline-danger" v-if="subscription.cancelled_at === null" @click="cancel(subscription)">Cancel</div>

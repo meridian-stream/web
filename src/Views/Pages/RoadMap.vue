@@ -53,7 +53,7 @@
                                 List contents on home page
                             </li>
                             <li>
-                                <i class="fa-solid fa-fw fa-ellipsis text-warning"></i>
+                                <i class="fa-solid fa-fw fa-check text-success"></i>
                                 Ability to create content
                             </li>
                             <li>
@@ -93,11 +93,11 @@
                                 Triggers/categories
                             </li>
                             <li>
-                                <i class="fa-solid fa-fw fa-ellipsis text-warning"></i>
+                                <i class="fa-solid fa-fw fa-check text-success"></i>
                                 Creator onboarding KYC
                             </li>
                             <li>
-                                <i class="fa-solid fa-fw fa-ellipsis text-warning"></i>
+                                <i class="fa-solid fa-fw fa-check text-success"></i>
                                 Creator payout process
                             </li>
                             <li>
@@ -120,10 +120,10 @@
                         <h1>Future</h1>
                         <p>This section details unscheduled nice-to-have features which have a strong possibility of being developed based on demand and suitability.</p>
                         <ul>
-                            <li>Badges system</li>
-                            <li>Profile banners and custom colours</li>
-                            <li>Improved video player</li>
+                            <li>Channel customisation including banners and custom colours</li>
+                            <li>Improved home page video sorting</li>
                             <li>Channel and user-defined playlists</li>
+                            <li>Improved video player</li>
                         </ul>
                     </div>
                 </div>

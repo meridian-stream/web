@@ -8,10 +8,10 @@
     >
         <div v-if="authUser !== null">
             <div class="subscribe-channel-image float-start">
-                <Image v-if="channel !== null" :src="channel.image.url"></Image>
+                <Image v-if="channel.image !== null" :src="channel.image.url"></Image>
             </div>
-            <h2>Subscribe to John Smith</h2>
-            <p>Hi, I'm John Smith and I'm really passionate about creating and sharing ASMR.</p>
+            <h2>Subscribe to {{ channel.name }}</h2>
+            <div v-html="channel.enticement || 'Subscribing to ' + channel.name + ' grants you access to exclusive content.'"></div>
             <p class="small text-muted">John Smith has <span class="text-primary">{{ channel.exclusive_count }} exclusive videos</span> for their subscribers only.</p>
             <div class="swiper" id="subscribe-swiper">
                 <div class="swiper-wrapper">
@@ -24,7 +24,7 @@
                                 :class="createSubscriptionRequest.product_id === product.id ? 'bg-primary' : 'bg-dark'"
                                 @click="createSubscriptionRequest.product_id = product.id"
                             >
-                                {{ product.period_duration }} month subscription @ ${{ (product.price / 100) }} / month
+                                {{ product.period_duration }} month subscription @ ${{ (product.price / 100) }} / {{ product.period_duration === 1 ? 'month' : product.period_duration === 3 ? 'quarter' : '' }}
                             </div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <a class="btn btn-sm btn-outline-primary" @click="$emit('openAddCard')">
+                            <a class="btn btn-sm btn-outline-primary" @click="$emit('openAddCard', card => { this.createSubscriptionRequest.card_id = card.id; })">
                                 Add Card
                             </a>
                         </div>
@@ -130,11 +130,19 @@
             },
             async submit () {
                 if (this.swiper.activeIndex === 1) {
+                    if (this.createSubscriptionRequest.card_id === null) {
+                        alert('Select a payment method to complete subscription.');
+                        return;
+                    }
                     this.createSubscriptionRequest.submitTo(Server.getInstance())
                         .then(response => {
                             this.$emit('success', response);
                         })
                 } else {
+                    if (this.createSubscriptionRequest.product_id === null) {
+                        alert('Select a subscription tier before continuing.');
+                        return;
+                    }
                     this.swiper.slideNext();
                 }
             },

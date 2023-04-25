@@ -1,7 +1,7 @@
 <template>
     <div class="container py-sm-3" v-if="content !== null">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-8 p-0 p-md-3">
+            <div class="col-12 p-0 p-md-3">
                 <div
                     style="width: 100%; padding-top: 56.23%; overflow: hidden; position: relative"
                     v-if="typeof content.video.url === 'undefined'"
@@ -23,26 +23,27 @@
             </div>
         </div>
         <div class="row justify-content-center mb-2">
-            <div class="col-12 col-md-8">
+            <div class="col-12">
                 <div class="row">
-                    <div class="col-12 col-lg-9">
+                    <div class="col-12 col-lg-8 col-xl-9">
                         <h1>{{ content.title }}</h1>
-                        <div class="text-muted small mb-2">10 views • 5 months ago</div>
+                        <div class="text-muted small mb-2">{{ content.view_count }} views • {{ content.nice_published_at }}</div>
                         <Tags :content="content.tags"></Tags>
                     </div>
-                    <div class="col-12 col-lg-3 text-end">
+                    <div class="col-12 col-lg-4 col-xl-3 text-end">
                         <span class="col-form-label">
                             <Stars :content="content" class="mb-2"></Stars>
                         </span>
+                        <ReportButton @click="$emit('openReport', content)" class="ms-2"></ReportButton>
                         <LikeAndDislike class="ms-2" :content="content"></LikeAndDislike>
                     </div>
                 </div>
                 <hr>
                 <div class="row">
                     <div class="col-12 col-lg-8">
-                        <ChannelBadge class="float-start me-3" :channel="content.channel"></ChannelBadge>
+                        <ChannelBadge class="float-start me-3" v-if="content.channel.image !== null" :channel="content.channel"></ChannelBadge>
                         <span style="font-size: 1.125rem; line-height: 32px">{{ content.channel.name }}</span><br>
-                        <span class="text-muted small">9 followers</span>
+                        <span class="text-muted small">{{ content.channel.follower_count }} followers</span>
                     </div>
                     <div class="col-12 col-lg-4 text-end mb-3">
                         <FollowButton
@@ -50,6 +51,7 @@
                             :channel="content.channel"
                         ></FollowButton>
                         <SubscribeButton
+                            v-if="content.channel.is_accepting_subscriptions"
                             class="ms-2 mb-2"
                             @openSubscribe="() => { this.$emit('openSubscribe', this.content.channel); }"
                             :channel="content.channel"
@@ -72,6 +74,9 @@
     import Tags from "../../Components/Tags/Tags.vue";
     import LikeAndDislike from "../../Components/LikeAndDislike/LikeAndDislike.vue";
     import FollowButton from "../../Components/FollowButton/FollowButton.vue";
+    import CreateViewRequest from "../../../Requests/CreateViewRequest";
+    import UpdateViewRequest from "../../../Requests/UpdateViewRequest";
+    import ReportButton from "../../Components/ReportButton/ReportButton.vue";
 
     export default {
         components: {
@@ -82,12 +87,15 @@
             Tags,
             LikeAndDislike,
             FollowButton,
+            ReportButton,
         },
         data () {
             return {
                 content: null,
+                createOrUpdateContentRequest: null,
                 getContentRequest: new GetContentRequest(this.$route.params.id),
                 videoPlayer: null,
+                viewInterval: null,
             };
         },
         methods: {
@@ -96,28 +104,57 @@
                     .then(content => {
                         this.content = content;
 
-                        console.log('got', content);
-
+                        // If the video has no URL, ask the user to sub
                         if (typeof this.content.video.url === 'undefined') {
                             setTimeout(() => {
                                 this.$emit('openSubscribe', this.content.channel);
                             }, 500)
                         }
+
+                        let view = localStorage.getItem('view-' + this.content.id);
+
+                        // Wait because the video element might not have loaded in yet
+                        setTimeout(() => {
+                            this.videoPlayer = document.getElementById('video-player');
+
+                            // When the video is played...
+                            this.videoPlayer.addEventListener('play', () => {
+                                this.viewInterval = setInterval(() => {
+                                    if (view === null) {
+                                        this.createOrUpdateContentRequest = new CreateViewRequest(this.content.id, this.authUser?.id);
+                                    } else {
+                                        this.createOrUpdateContentRequest = new UpdateViewRequest(view, this.authUser?.id);
+                                        this.createOrUpdateContentRequest.most_recent_time = Math.round(this.videoPlayer.currentTime);
+                                    }
+                                    this.createOrUpdateContentRequest.submitTo(Server.getInstance())
+                                        .then(v => {
+                                            localStorage.setItem('view-' + this.content.id, v.id);
+                                            view = v.id;
+                                            this.createOrUpdateContentRequest = new UpdateViewRequest(v.id, this.authUser?.id);
+                                            this.createOrUpdateContentRequest.most_recent_time = Math.round(this.videoPlayer.currentTime);
+                                        })
+                                }, 1000);
+                            })
+
+                            // When the video has paused
+                            this.videoPlayer.addEventListener('pause', () => {
+                                clearInterval(this.viewInterval);
+                            });
+
+                            // When the screen orientation changes...
+                            screen.orientation.addEventListener('change', e => {
+                                if (e.target.type.substring(0, 9) === 'landscape') {
+                                    this.videoPlayer.requestFullscreen();
+                                } else {
+                                    this.videoPlayer.exitFullscreen();
+                                }
+                            })
+                        }, 250);
                     });
             },
         },
         mounted () {
             this.getContent();
-
-            this.videoPlayer = document.getElementById('video-player');
-
-            screen.orientation.addEventListener('change', e => {
-                if (e.target.type.substring(0, 9) === 'landscape') {
-                    this.videoPlayer.requestFullscreen();
-                } else {
-                    this.videoPlayer.exitFullscreen();
-                }
-            })
         },
         props: [
             'authUser',
@@ -132,6 +169,12 @@
                      * This stops us needing to do an ugly window.location.refresh()
                      */
                     if (newVal !== null && this.content !== null) {
+                        for (let i = 0; i < newVal.channels.length; i++) {
+                            if (newVal.channels[i].id === this.content.channel.id) {
+                                this.getContent();
+                                return;
+                            }
+                        }
                         for (let i = 0; i < newVal.subscriptions.length; i++) {
                             if (newVal.subscriptions[i].channel.id === this.content.channel.id) {
                                 this.getContent();
