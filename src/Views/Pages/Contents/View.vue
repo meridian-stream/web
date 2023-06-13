@@ -47,6 +47,7 @@
                     </div>
                     <div class="col-12 col-lg-4 text-end mb-3">
                         <FollowButton
+                            @openLogin="$emit('openLogin')"
                             class="mb-2"
                             :channel="content.channel"
                         ></FollowButton>

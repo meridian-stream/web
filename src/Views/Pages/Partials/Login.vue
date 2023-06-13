@@ -31,7 +31,7 @@
                 Password
             </label>
             <div class="col-8">
-                <input type="password" name="password" id="password" class="form-control" v-model="loginRequest.password">
+                <input type="password" name="password" id="password" class="form-control" v-model="loginRequest.password" @keydown.enter="submit">
                 <SpecificError :form="loginRequest" :field="'password'"></SpecificError>
             </div>
         </div>

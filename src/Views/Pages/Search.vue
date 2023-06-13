@@ -3,7 +3,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="py-2">
-                    <h1>Search: {{ $route.query.query }}</h1>
+                    <h1 v-if="typeof $route.query.query !== 'undefined' && $route.query.query !== null">Search: {{ $route.query.query }}</h1>
+                    <h1 v-if="typeof $route.query.tags !== 'undefined' && $route.query.tags.length > 0">Tags: <span v-for="(tag, i) in $route.query.tags" class="me-1">{{ tag }}</span></h1>
                     <PaginatedContents
                         v-if="getContentsRequest !== null"
                         @openSubscribe="channel => { this.$emit('openSubscribe', channel) }"

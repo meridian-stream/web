@@ -10,6 +10,7 @@
             @openGallery="openGallery"
             @openReport="openReport"
             @openRegister="isOpen.register = true"
+            @openLogin="isOpen.login = true"
             @openSubscribe="openSubscribe"
             @setUser="getUser"
             @subscriptionUpdated="subscriptionUpdated"
@@ -153,6 +154,7 @@
                 this.isOpen.addCard = true;
             },
             openGallery (folder, selectableFiles, onSelect) {
+                console.log(this.user);
                 console.log(folder);
                 if (typeof folder === 'undefined') {
                     return;

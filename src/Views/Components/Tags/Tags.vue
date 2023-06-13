@@ -18,7 +18,9 @@
                 ) {
                     existingTags = this.$route.query.tags;
                 }
-                existingTags.push(tag);
+                if (existingTags.indexOf(tag) === -1) {
+                    existingTags.push(tag);
+                }
                 this.$router.push({
                     name: 'search',
                     query: {
