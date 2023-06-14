@@ -4,4 +4,7 @@ export default {
     path: '/contents/:id',
     name: 'contents.view',
     component: View,
+    meta: {
+        title: 'View Content',
+    },
 };

@@ -46,7 +46,8 @@
                 <h3>How much can I earn?</h3>
                 <div class="card mb-3">
                     <div class="card-body pb-0">
-                        <p>At the moment, creators receive 80% of the subscription price. This means that from a subscription of $2.99, the creator will receive $2.39. All card-processing and banking fees are taken from Meridian's 20%.</p>
+                        <p>At the moment, creators receive 80% of the subscription price. This means that from a subscription of $2.99, the creator will receive $2.39. All card-processing and banking fees are taken from
+                            {{ appName }}'s 20%.</p>
                     </div>
                 </div>
             </div>

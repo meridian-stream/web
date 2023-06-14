@@ -4,4 +4,7 @@ export default {
     path: '/tags/:id',
     name: 'tags.view',
     component: View,
+    meta: {
+        title: 'View Tag',
+    },
 };

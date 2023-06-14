@@ -7,7 +7,11 @@
     "build": "vite build",
     "preview": "vite preview"
   },
-  "dependencies": {
+  "type": "module",
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "sass": "^1.58.3",
+    "vite": "^4.1.4",
     "@fortawesome/fontawesome-free": "^6.3.0",
     "@popperjs/core": "^2.11.6",
     "@stripe/stripe-js": "^1.52.0",
@@ -20,10 +24,5 @@
     "swiper": "^9.1.1",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^4.0.0",
-    "sass": "^1.58.3",
-    "vite": "^4.1.4"
   }
 }

@@ -4,4 +4,7 @@ export default {
     path: '/roadmap',
     name: 'roadmap',
     component: RoadMap,
+    meta: {
+        title: 'Road Map',
+    },
 };

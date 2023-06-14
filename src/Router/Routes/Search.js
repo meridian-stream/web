@@ -4,4 +4,7 @@ export default {
     path: '/search',
     name: 'search',
     component: Search,
+    meta: {
+        title: 'Search',
+    },
 };

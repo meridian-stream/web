@@ -4,4 +4,7 @@ export default {
     path: '/channels/create',
     name: 'channels.create',
     component: Create,
+    meta: {
+        title: 'Create Channel',
+    },
 };

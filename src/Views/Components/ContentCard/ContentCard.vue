@@ -95,7 +95,7 @@
                 bottom: 0;
                 background-color: rgba(0, 0, 0, 0.75);
                 padding: 0.25rem;
-                border-top-left-radius: 1rem;
+                //border-top-left-radius: 1rem;
             }
 
             .content-card-subscribers-only {
@@ -104,7 +104,7 @@
                 top: 0;
                 padding: 0.5rem;
                 background-color: rgba(0, 0, 0, 0.75);
-                border-bottom-left-radius: 1rem;
+                //border-bottom-left-radius: 1rem;
             }
         }
 

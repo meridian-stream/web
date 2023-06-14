@@ -12,6 +12,7 @@ import Search from "./Routes/Search";
 import FAQ from "./Routes/FAQ";
 
 import CP from "./Routes/CP/View";
+import env from "../env.js";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,5 +37,13 @@ const router = createRouter({
         }, 100)
     },
 });
+
+router.afterEach((to, from) => {
+    let title = env.name;
+    if (typeof to.meta !== 'undefined' && typeof to.meta.title !== 'undefined') {
+        title += ' | ' + to.meta.title;
+    }
+    document.title = title;
+})
 
 export default router

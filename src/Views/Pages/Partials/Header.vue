@@ -11,7 +11,19 @@
                     <input type="text" class="form-control" v-model="query">
                 </div>
                 <div class="col-2 text-end">
-                    <div class="btn btn-outline-primary" v-if="authUser === null" @click="$emit('openLogin')">Log In</div>
+<!--                    <div class="btn btn-outline-primary" v-if="authUser === null" @click="$emit('openLogin')">Log In</div>-->
+
+                    <div class="dropdown dropdown-menu-end" v-if="authUser === null">
+<!--                        <div class="profile-pic" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                            <i class="fa-solid fa-bars"></i>-->
+<!--                        </div>-->
+                        <div class="btn btn-outline-dark text-light" data-bs-toggle="dropdown">
+                            <i class="fa-solid fa-bars"></i>
+                        </div>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="#" @click="$emit('openLogin')">Log In</a></li>
+                        </ul>
+                    </div>
 
                     <div class="dropdown dropdown-menu-end" v-if="authUser !== null">
                         <div class="profile-pic" data-bs-toggle="dropdown" aria-expanded="false">

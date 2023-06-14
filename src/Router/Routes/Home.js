@@ -4,4 +4,7 @@ export default {
     path: '/',
     name: 'home',
     component: Home,
+    meta: {
+        title: 'Home',
+    },
 };
