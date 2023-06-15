@@ -2,11 +2,7 @@
     <div class="container-fluid py-2" v-if="channel !== null">
         <div class="row mb-2">
             <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h1 class="mb-0">{{ channel.name }}</h1>
-                    </div>
-                </div>
+                <h1 class="mb-0">{{ channel.name }} Control Panel</h1>
             </div>
         </div>
         <div class="row">

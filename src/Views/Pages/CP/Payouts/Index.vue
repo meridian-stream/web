@@ -1,6 +1,6 @@
 <template>
     <h2>Payouts</h2>
-    <table class="table bg-dark" v-if="payouts !== null">
+    <table class="table table-dark" v-if="payouts !== null">
         <thead>
             <tr>
                 <th>ID</th>
@@ -26,7 +26,7 @@
                     You don't have any payouts yet!
                 </td>
             </tr>
-            <tr>
+            <tr v-if="payouts.data.length > 0">
                 <td colspan="99" class="text-center">
                     <button class="btn btn-outline-primary">Load More</button>
                 </td>
