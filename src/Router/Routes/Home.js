@@ -5,6 +5,6 @@ export default {
     name: 'home',
     component: Home,
     meta: {
-        title: 'Home',
+        title: 'The cozy corner of ASMR | High-quality and ad-free ASMR',
     },
 };
