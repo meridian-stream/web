@@ -13,11 +13,13 @@ import FAQ from "./Routes/FAQ";
 
 import CP from "./Routes/CP/View";
 import env from "../env.js";
+import About from "./Routes/About.js";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         Home,
+        About,
         ChannelsView,
         ChannelsCreate,
         ContentsView,

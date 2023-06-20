@@ -10,8 +10,7 @@
                 <div class="col-12 col-md-4 text-center text-md-start mb-3">
                     <h2>Links</h2>
                     <ul>
-                        <li><router-link to="#">About {{ appName }}</router-link></li>
-                        <li><router-link to="#">For Creators</router-link></li>
+                        <li><router-link :to="{ name: 'about' }">About {{ appName }}</router-link></li>
                         <li><router-link :to="{ name: 'roadmap' }">Road Map</router-link></li>
                     </ul>
                 </div>

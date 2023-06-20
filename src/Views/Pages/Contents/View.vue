@@ -27,11 +27,13 @@
                 <div class="row">
                     <div class="col-12 col-lg-8 col-xl-9">
                         <h1>{{ content.title }}</h1>
-                        <div class="text-muted small mb-2">{{ content.view_count }} views • {{ content.nice_published_at }}</div>
+                        <div class="text-muted small mb-2">
+                            <span v-if="content.view_count > 5">{{ content.view_count }} views • </span>{{ content.nice_published_at }}
+                        </div>
                         <Tags :content="content.tags"></Tags>
                     </div>
                     <div class="col-12 col-lg-4 col-xl-3 text-end">
-                        <span class="col-form-label">
+                        <span class="col-form-label" v-if="content.rating > 0">
                             <Stars :content="content" class="mb-2"></Stars>
                         </span>
                         <ReportButton @click="$emit('openReport', content)" class="ms-2"></ReportButton>

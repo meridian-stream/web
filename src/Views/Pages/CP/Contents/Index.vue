@@ -16,7 +16,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <table class="table bg-dark">
+            <table class="table table-dark">
                 <thead>
                     <tr>
                         <th>Title</th>
