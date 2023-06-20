@@ -1,6 +1,6 @@
 export default {
     api: {
-        endpoint: 'http://api.staging.meridian.stream',
+        endpoint: 'https://api.staging.meridian.stream',
         timeout: 5000,
     },
     name: '[s] meridian',
