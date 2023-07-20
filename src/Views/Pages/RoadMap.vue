@@ -46,7 +46,7 @@
                 </div>
                 <div class="card mb-3">
                     <div class="card-body">
-                        <h1>v1.0.0</h1>
+                        <h1>v1.0.0 - Audible Aardvark</h1>
                         <ul style="list-style: none; padding-left: 0">
                             <li>
                                 <i class="fa-solid fa-fw fa-check text-success"></i>
@@ -101,16 +101,38 @@
                                 Creator payout process
                             </li>
                             <li>
-                                <i class="fa-solid fa-fw fa-ellipsis text-warning"></i>
+                                <i class="fa-solid fa-fw fa-check text-success"></i>
                                 Content reporting
                             </li>
                             <li>
-                                <i class="fa-solid fa-fw fa-ellipsis text-warning"></i>
+                                <i class="fa-solid fa-fw fa-check text-success"></i>
                                 Emails!
                             </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h1>v1.1.0 - Breezy Bear</h1>
+                        <ul style="list-style: none; padding-left: 0">
                             <li>
                                 <i class="fa-solid fa-fw fa-ellipsis text-warning"></i>
-                                Terms & conditions and cookie policy
+                                Improved video player controls
+                                <ul>
+                                    <li>Theatre mode</li>
+                                    <li>Looping video sections</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h1>v1.2.0 - Calm Capybara</h1>
+                        <ul style="list-style: none; padding-left: 0">
+                            <li>
+                                <i class="fa-solid fa-fw fa-ellipsis text-warning"></i>
+                                Ability to queue up videos
                             </li>
                         </ul>
                     </div>
@@ -120,10 +142,10 @@
                         <h1>Future</h1>
                         <p>This section details unscheduled nice-to-have features which have a strong possibility of being developed based on demand and suitability.</p>
                         <ul>
+                            <li>Favourite videos</li>
                             <li>Channel customisation including banners and custom colours</li>
                             <li>Improved home page video sorting</li>
                             <li>Channel and user-defined playlists</li>
-                            <li>Improved video player</li>
                         </ul>
                     </div>
                 </div>
