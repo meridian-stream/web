@@ -1,27 +1,31 @@
 <template>
     <div class="container py-sm-3" v-if="content !== null">
-        <div class="row justify-content-center">
-            <div class="col-12 p-0 p-md-3">
-                <div
-                    style="width: 100%; padding-top: 56.23%; overflow: hidden; position: relative"
-                    v-if="typeof content.video.url === 'undefined'"
-                >
-                    <Image
-                        :src="'/images/subscribers-only.svg'"
-                    ></Image>
-                    <div class="subscribers-only-label">
-                        This content is for <span class="text-primary">{{ content.channel.name }}</span> subscribers only!
-                    </div>
-                </div>
-                <video
-                    v-if="typeof content.video.url !== 'undefined'"
-                    id="video-player"
-                    controls="controls"
-                    :src="content.video.url"
-                    style="width: 100%;"
-                ></video>
-            </div>
-        </div>
+        <VideoPlayer
+            class="mb-3"
+            :content="content"
+        ></VideoPlayer>
+<!--        <div class="row justify-content-center">-->
+<!--            <div class="col-12 p-0 p-md-3">-->
+<!--                <div-->
+<!--                    style="width: 100%; padding-top: 56.23%; overflow: hidden; position: relative"-->
+<!--                    v-if="typeof content.video.url === 'undefined'"-->
+<!--                >-->
+<!--                    <Image-->
+<!--                        :src="'/images/subscribers-only.svg'"-->
+<!--                    ></Image>-->
+<!--                    <div class="subscribers-only-label">-->
+<!--                        This content is for <span class="text-primary">{{ content.channel.name }}</span> subscribers only!-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <video-->
+<!--                    v-if="typeof content.video.url !== 'undefined'"-->
+<!--                    id="video-player"-->
+<!--                    controls="controls"-->
+<!--                    :src="content.video.url"-->
+<!--                    style="width: 100%;"-->
+<!--                ></video>-->
+<!--            </div>-->
+<!--        </div>-->
         <div class="row justify-content-center mb-2">
             <div class="col-12">
                 <div class="row">
@@ -68,6 +72,7 @@
 </template>
 
 <script>
+    import VideoPlayer from "@/Views/Components/VideoPlayer/VideoPlayer.vue";
     import Server from "../../../Servers/Server";
     import GetContentRequest from "../../../Requests/GetContentRequest";
     import Stars from "../../Components/Stars/Stars.vue";
@@ -83,6 +88,7 @@
 
     export default {
         components: {
+            VideoPlayer,
             Image,
             Stars,
             ChannelBadge,
