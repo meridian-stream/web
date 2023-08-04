@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 class="d-none">Latest Content</h2>
+        <h2 v-if="contents !== null && contents.length > 0">Videos</h2>
         <div class="row" v-if="contents !== null">
             <div class="col-12 col-md-6 col-lg-4 col-xl-3" v-for="(content, i) in contents">
                 <ContentCard :content="content" @openSubscribe="channel => { $emit('openSubscribe', channel); }"></ContentCard>

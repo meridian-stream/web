@@ -38,6 +38,7 @@
 
 <style lang="scss" scoped>
     .channel-badge {
+        display: inline-block;
         position: relative;
         width: 64px;
         height: 64px;
