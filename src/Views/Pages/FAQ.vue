@@ -1,7 +1,7 @@
 <template>
     <div class="container py-2">
-        <div class="row">
-            <div class="col-12">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
                 <h1>FAQ</h1>
 
                 <h2 class="text-primary">For Users</h2>
@@ -38,7 +38,7 @@
                 <h3>What about other platforms?</h3>
                 <div class="card mb-3">
                     <div class="card-body pb-0">
-                        <p>There are many platforms that provide a paywall for content, such as Patreon, OnlyFans, and many others. The problem is, not all the content on them is ASMR. By creating a platform specifically for ASMR, we can build features designed specifically around ASMR.</p>
+                        <p>There are many platforms that provide a paywall for content, such as Patreon, OnlyFans, and many others. The problem is, not all the content on them is ASMR. By creating our own space for ASMR, we can ensure users are only seing relevant content.</p>
                     </div>
                 </div>
 

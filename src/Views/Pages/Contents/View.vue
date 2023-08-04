@@ -44,7 +44,7 @@
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         <ChannelBadge class="float-start me-3" v-if="content.channel.image !== null" :channel="content.channel"></ChannelBadge>
-                        <span style="font-size: 1.125rem; line-height: 32px">{{ content.channel.name }}</span><br>
+                        <router-link style="color: inherit; text-decoration: none;" :to="{ name: 'channels.view', params: { id: content.channel.slug || content.channel.id } }"><span style="font-size: 1.125rem; line-height: 32px">{{ content.channel.name }}</span></router-link><br>
                         <span class="text-muted small">{{ content.channel.follower_count }} followers</span>
                     </div>
                     <div class="col-12 col-lg-4 text-end mb-3">
