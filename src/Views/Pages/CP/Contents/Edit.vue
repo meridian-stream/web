@@ -66,10 +66,16 @@
                     </div>
                 </div>
             </div>
-            <div class="row mb-3" v-if="cOUContentRequest.id !== 'new'">
+            <div class="row mb-3">
                 <label for="tags" class="col-12 col-md-4 text-md-end col-form-label">Tags</label>
-                <div class="col-12 col-md-8">
-                    <Tags :tags="cOUContentRequest.tags"></Tags>
+                <div class="col-12 col-md-8 position-relative">
+                    <Tags :tags="cOUContentRequest.tags" v-if="cOUContentRequest.tags.length > 0" class="mb-3" :is-clickable="false" :is-deletable="true" @delete="deleteTag"></Tags>
+                    <input type="text" class="form-control" @keydown="search" v-model="searchTerm">
+                    <div class="list-group position-absolute" v-if="tags.length > 0">
+                        <div class="list-group-item border-black" :data-tag_id="tag.id" v-for="(tag, id) in tags" @click="addTag(tag)">
+                            {{ tag.name }}
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row mb-3">
@@ -88,6 +94,7 @@
     import Server from "../../../../Servers/Server";
     import Tags from "../../../Components/Tags/Tags.vue";
     import Image from "../../../Components/Image/Image.vue";
+    import GetTagsRequest from "@/Requests/GetTagsRequest.js";
 
     export default {
         components: {
@@ -97,19 +104,43 @@
         data () {
             return {
                 cOUContentRequest: null,
-                getTagsRequest: null,
+                getTagsRequest: new GetTagsRequest(),
+                tags: [],
+                searchTerm: null,
+                searchTimeout: null,
             }
         },
         methods: {
+            addTag(tag) {
+                this.searchTerm = null;
+                this.tags = [];
+                this.cOUContentRequest.tags.push(tag);
+            },
+            deleteTag (tag) {
+                for (let i = 0; i < this.cOUContentRequest.tags.length; i++) {
+                    if (this.cOUContentRequest.tags[i].id === tag.id) {
+                        this.cOUContentRequest.tags.splice(i, 1);
+                    }
+                }
+            },
             save () {
                 this.cOUContentRequest.submitTo(Server.getInstance())
                     .then(content => {
                         this.cOUContentRequest = new UpdateContentRequest(content);
                     })
-            }
+            },
+            search () {
+                clearTimeout(this.searchTimeout);
+                this.searchTimeout = setTimeout(() => {
+                    this.getTagsRequest = new GetTagsRequest(this.searchTerm);
+                    this.getTagsRequest.submitTo(Server.getInstance())
+                        .then(response => {
+                            this.tags = response;
+                        })
+                }, 120);
+            },
         },
         mounted () {
-            console.log(this.channel);
             if (this.$route.params.contentId === 'new') {
                 this.cOUContentRequest = new CreateContentRequest(this.channel.id, this.$route.params.contentId);
             } else {
@@ -118,6 +149,10 @@
                         this.cOUContentRequest = new UpdateContentRequest(content)
                     })
             }
+            // this.getTagsRequest.submitTo(Server.getInstance())
+            //     .then(tags => {
+            //         this.tags = tags;
+            //     })
         },
         props: [
             'authUser',

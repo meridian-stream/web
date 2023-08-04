@@ -72,7 +72,6 @@
             this.getChannelRequest.submitTo(Server.getInstance())
                 .then(channel => {
                     this.getChannelContentsRequest = new GetContentsRequest(null, null, [channel.id]);
-                    console.log(channel);
                     this.channel = channel;
                 })
         },

@@ -154,8 +154,6 @@
                 this.isOpen.addCard = true;
             },
             openGallery (folder, selectableFiles, onSelect) {
-                console.log(this.user);
-                console.log(folder);
                 if (typeof folder === 'undefined') {
                     return;
                 }

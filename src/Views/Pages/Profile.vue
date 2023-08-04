@@ -72,8 +72,6 @@
             onImageSelected (image) {
                 this.imageOverride = image.url;
                 this.updateUserRequest.image_id = image.id;
-                // console.log('image is', image);
-                // this.authUser.image = image;
             },
             submit () {
                 this.updateUserRequest.submitTo(Server.getInstance())

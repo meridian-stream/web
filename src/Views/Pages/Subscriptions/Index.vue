@@ -72,7 +72,6 @@
         methods: {
             cancel (subscription) {
                 this.toCancel = subscription;
-                console.log(this.toCancel);
                 this.isOpen.cancel = true;
             },
             confirmCancel () {
