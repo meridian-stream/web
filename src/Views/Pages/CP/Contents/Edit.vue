@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row mb-3">
+            <div class="row mb-3" v-if="cOUContentRequest.id !== 'new'">
                 <label for="tags" class="col-12 col-md-4 text-md-end col-form-label">Tags</label>
                 <div class="col-12 col-md-8 position-relative">
                     <Tags :tags="cOUContentRequest.tags" v-if="cOUContentRequest.tags.length > 0" class="mb-3" :is-clickable="false" :is-deletable="true" @delete="deleteTag"></Tags>
