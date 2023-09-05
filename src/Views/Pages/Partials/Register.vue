@@ -47,7 +47,7 @@
                 Confirmed
             </label>
             <div class="col-8">
-                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" v-model="registerRequest.password_confirmation">
+                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" v-model="registerRequest.password_confirmation" @keydown.enter="register">
                 <SpecificError :form="registerRequest" :field="'password_confirmation'"></SpecificError>
             </div>
         </div>

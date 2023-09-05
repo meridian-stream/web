@@ -1,5 +1,5 @@
 <template>
-    <div class="content-card card bg-dark mb-3">
+    <div class="content-card card bg-dark text-light mb-3">
         <div class="content-card-image-container" @click="$router.push({ name: 'contents.view', params: { id: content.id } })">
             <Image :src="content.image.url" :alt="content.title"></Image>
             <div class="content-card-duration small">{{ duration }}</div>

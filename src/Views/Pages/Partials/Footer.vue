@@ -42,7 +42,7 @@
             </div>
             <div class="row">
                 <div class="col-12 small text-muted text-center text-md-start">
-                    &copy; {{ appName }} 2023 {{ (new Date()).getFullYear() > 2023 ? ('- ' + (new Date()).getFullYear()) : '' }}
+                    &copy; {{ appName }} ({{ appVersion }}) 2023 {{ (new Date()).getFullYear() > 2023 ? ('- ' + (new Date()).getFullYear()) : '' }}
                 </div>
             </div>
         </div>
@@ -51,11 +51,15 @@
 
 <script>
     import env from "../../../env";
+    import p from "../../../../package.json";
 
     export default {
         computed: {
             appName() {
                 return env.name;
+            },
+            appVersion() {
+                return p.version;
             }
         }
     }
@@ -74,8 +78,8 @@
         }
 
         .social:hover {
-            background-color: #EF626C;
-            color: black;
+            //background-color: #EF626C;
+            //color: black;
         }
     }
 

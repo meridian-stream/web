@@ -1,7 +1,7 @@
 <template>
     <div class="container py-sm-3" v-if="content !== null">
-        <div class="row justify-content-center">
-            <div class="col-12 p-0 p-md-3">
+        <div class="row justify-content-center mb-3">
+            <div class="col-12 col-xl-10 p-0 p-md-3">
                 <div
                     style="width: 100%; padding-top: 56.23%; overflow: hidden; position: relative"
                     v-if="typeof content.video.url === 'undefined'"
@@ -10,7 +10,8 @@
                         :src="'/images/subscribers-only.svg'"
                     ></Image>
                     <div class="subscribers-only-label">
-                        This content is for <span class="text-primary">{{ content.channel.name }}</span> subscribers only!
+                        <i class="fa-solid fa-lock text-secondary fa-2x"></i><br><br>
+                        This content is for <span class="text-secondary">{{ content.channel.name }}</span> subscribers only!
                     </div>
                 </div>
                 <video
@@ -197,11 +198,11 @@
         left: 50%;
         top: 50%;
         width: 200px;
-        height: 64px;
+        height: 192px;
         line-height: 32px;
         text-align: center;
         margin-left: -100px;
-        margin-top: -32px;
+        margin-top: -96px;
         text-shadow: 0 0 8px black, 0 0 16px black, 0 0 32px black, 0 0 64px black, 0 1px 0 black;
     }
 </style>

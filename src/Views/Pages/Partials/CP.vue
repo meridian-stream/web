@@ -66,6 +66,6 @@
 
 <style>
     .list-group-item-cp-menu:hover {
-        background-color: #EF626C;
+        background-color: #7C3EA3;
     }
 </style>
