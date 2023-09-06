@@ -14,6 +14,7 @@ import FAQ from "./Routes/FAQ";
 import CP from "./Routes/CP/View";
 import env from "../env.js";
 import About from "./Routes/About.js";
+import PasswordReset from "@/Router/Routes/PasswordReset.js";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,6 +31,7 @@ const router = createRouter({
         Search,
         SubscriptionsIndex,
         TagsView,
+        PasswordReset,
 
         CP,
     ],

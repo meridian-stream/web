@@ -2,9 +2,16 @@
     <Popup
         :buttons="[
             { text: 'Cancel', action: () => { $emit('close') }, type: 'dark text-light' },
+            { text: 'Report', action: report, type: 'danger' },
         ]"
     >
-        <div class="reason p-2" v-for="(reason, i) in reportReasons" @click="report(reason)">
+        <p>Please select your reason for reporting this content below.</p>
+        <div
+            class="reason p-2 mb-1"
+            :class="{'border-danger': createReportRequest.report_reason_id === reason.id}"
+            v-for="(reason, i) in reportReasons"
+            @click="createReportRequest.report_reason_id = reason.id"
+        >
             <p class="fw-bold mb-0">{{ reason.name }}</p>
             <p class="mb-0">{{ reason.description }}</p>
         </div>
@@ -29,8 +36,7 @@
             };
         },
         methods: {
-            report (reason) {
-                this.createReportRequest.report_reason_id = reason.id;
+            report () {
                 this.createReportRequest.submitTo(Server.getInstance())
                     .then(report => {
                         alert('Thanks, the content has been reported!');
@@ -58,9 +64,9 @@
 
 <style>
     .reason {
-        border: 1px solid;
+        border: 1px solid black;
     }
     .reason:hover {
-        border: 1px solid #EF626C;
+        cursor: pointer;
     }
 </style>

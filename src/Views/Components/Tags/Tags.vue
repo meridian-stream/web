@@ -26,7 +26,8 @@
             'tags',
         ],
         methods: {
-            filter (e, tag) {
+            filter (tag) {
+                console.log(tag);
                 let existingTags = [];
                 if (
                     typeof this.$route.query.tags !== 'undefined' &&

@@ -4,7 +4,7 @@
             <div class="col-12">
                 <h1>My Subscriptions</h1>
             </div>
-            <div class="col-12 col-md-4" v-for="(subscription, i) in authUser.subscriptions">
+            <div class="col-12 col-md-6 col-lg-4" v-for="(subscription, i) in authUser.subscriptions">
                 <div class="card">
                     <div class="card-header text-center">
                         <ChannelBadge class="d-inline-block" v-if="subscription.channel.image !== null" :channel="subscription.channel" size="large"></ChannelBadge><br>

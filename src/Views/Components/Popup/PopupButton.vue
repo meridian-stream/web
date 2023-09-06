@@ -1,5 +1,8 @@
 <template>
-    <div class="btn btn-outline-primary" @click="action">{{ text }}</div>
+    <div class="btn btn-outline-primary" @click="action">
+        <i class="fa-solid fa-spinner fa-pulse"></i>
+        {{ text }}
+    </div>
 </template>
 
 <script>

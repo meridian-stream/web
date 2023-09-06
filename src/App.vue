@@ -30,12 +30,14 @@
         v-if="isOpen.login"
         @close="isOpen.login = false;"
         @openRegister="isOpen.register = true;"
+        @openPasswordReset="isOpen.passwordReset = true"
         @success="getUser"
     ></Login>
     <Register
         v-if="isOpen.register"
         @close="isOpen.register = false"
         @openLogin="isOpen.login = true"
+        @openPasswordReset="isOpen.passwordReset = true"
         @success="getUser"
     ></Register>
     <AddCard
@@ -59,6 +61,10 @@
         :content="reportContent"
         v-if="isOpen.report"
     ></Report>
+    <ForgottenPassword
+        @close="isOpen.passwordReset = false;"
+        v-if="isOpen.passwordReset"
+    ></ForgottenPassword>
 </template>
 
 <script>
@@ -74,9 +80,13 @@
     import NewFolder from "./Views/Pages/Partials/Gallery/NewFolder.vue";
     import Register from "./Views/Pages/Partials/Register.vue";
     import Report from "./Views/Pages/Partials/Report.vue";
+    import PasswordReset from "@/Views/Pages/PasswordReset.vue";
+    import ForgottenPassword from "@/Views/Pages/Partials/ForgottenPassword.vue";
 
     export default {
         components: {
+            ForgottenPassword,
+            PasswordReset,
             Footer,
             Header,
             Login,
@@ -96,6 +106,7 @@
                     addCard: false,
                     gallery: false,
                     login: false,
+                    passwordReset: false,
                     register: false,
                     report: false,
                     subscribe: false,

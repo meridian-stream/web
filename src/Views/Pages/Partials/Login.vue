@@ -4,7 +4,7 @@
         :hasClose="true"
         :buttons="[
             { text: 'Close', action: () => { $emit('close') }, type: 'dark text-white' },
-            { text: 'Log In', action: submit, type: 'primary' },
+            { text: 'Log In', action: submit, type: 'primary', isLoading: loginRequest.isLoading },
         ]"
     >
         <div class="row mb-3">
@@ -22,17 +22,22 @@
                 Email
             </label>
             <div class="col-8">
-                <input type="email" name="email" id="email" class="form-control" v-model="loginRequest.email">
+                <input type="email" name="email" id="email" class="form-control" v-model="loginRequest.email" @keydown="loginRequest.clearErrors('email')">
                 <SpecificError :form="loginRequest" :field="'email'"></SpecificError>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-3">
             <label for="password" class="col-4 col-form-label text-end">
                 Password
             </label>
             <div class="col-8">
-                <input type="password" name="password" id="password" class="form-control" v-model="loginRequest.password" @keydown.enter="submit">
+                <input type="password" name="password" id="password" class="form-control" v-model="loginRequest.password" @keydown.enter="submit" @keydown="loginRequest.clearErrors('email')">
                 <SpecificError :form="loginRequest" :field="'password'"></SpecificError>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center small">
+                Forgotten your password? <a href="#" @click="$emit('openPasswordReset')">Click here</a>.
             </div>
         </div>
     </Popup>

@@ -2,7 +2,7 @@
     <div class="popup-container popup-close" @click="close">
         <div class="container-fluid h-100 popup-close" @click="close">
             <div class="row h-100 justify-content-center popup-close" @click="close">
-                <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4 my-auto popup-close" @click="close" :class="{ 'col-md-12 col-lg-12 col-xl-12': isWide }">
+                <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4 my-auto popup-close" @click="close" :class="{ 'col-md-12 col-lg-12 col-xl-12': wide }">
                     <div class="card bg-dark">
                         <div class="card-body">
                             <slot></slot>
@@ -13,7 +13,7 @@
                                 :class="[ 'btn-outline-' + (button.type || 'dark') ]"
                                 @click="button.action"
                                 v-for="(button, i) in buttons"
-                                v-html="button.text"
+                                v-html="button.isLoading ? '<i class=\'fa-solid fa-spinner fa-pulse\'></i>' : button.text"
                             ></div>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
 <script>
     export default {
         computed: {
-            isWide () {
+            wide () {
                 if (typeof this.isWide === 'undefined') {
                     return false;
                 }

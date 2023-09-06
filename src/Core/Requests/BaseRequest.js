@@ -70,7 +70,7 @@ class BaseRequest
         if (field === '*') {
             this.errors = {};
         } else {
-            if (!field in Object.keys(this.fields)) {
+            if (!field in Object.keys(this)) {
                 throw new BadFormException('You cannot clear the errors for a field that isn\'t defined.')
             }
 

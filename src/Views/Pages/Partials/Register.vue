@@ -2,7 +2,7 @@
     <Popup
         :buttons="[
             { text: 'Close', action: () => { $emit('close') }, type: 'dark text-light' },
-            { text: 'Register', action: register, type: 'primary' },
+            { text: 'Register', action: register, type: 'primary', isLoading: registerRequest.isLoading },
         ]"
     >
         <div class="row mb-3">
@@ -20,7 +20,7 @@
                 Name
             </label>
             <div class="col-8">
-                <input type="text" name="name" id="name" class="form-control" v-model="registerRequest.name">
+                <input type="text" name="name" id="name" class="form-control" v-model="registerRequest.name" @keydown="registerRequest.clearErrors('name')">
                 <SpecificError :form="registerRequest" :field="'name'"></SpecificError>
             </div>
         </div>
@@ -29,7 +29,7 @@
                 Email
             </label>
             <div class="col-8">
-                <input type="email" name="email" id="email" class="form-control" v-model="registerRequest.email">
+                <input type="email" name="email" id="email" class="form-control" v-model="registerRequest.email" @keydown="registerRequest.clearErrors('email')">
                 <SpecificError :form="registerRequest" :field="'email'"></SpecificError>
             </div>
         </div>
@@ -38,7 +38,7 @@
                 Password
             </label>
             <div class="col-8">
-                <input type="password" name="password" id="password" class="form-control" v-model="registerRequest.password">
+                <input type="password" name="password" id="password" class="form-control" v-model="registerRequest.password" @keydown="registerRequest.clearErrors('password')">
                 <SpecificError :form="registerRequest" :field="'password'"></SpecificError>
             </div>
         </div>
@@ -47,7 +47,7 @@
                 Confirmed
             </label>
             <div class="col-8">
-                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" v-model="registerRequest.password_confirmation" @keydown.enter="register">
+                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" v-model="registerRequest.password_confirmation" @keydown.enter="register" @keydown="registerRequest.clearErrors('password_confirmation')">
                 <SpecificError :form="registerRequest" :field="'password_confirmation'"></SpecificError>
             </div>
         </div>
