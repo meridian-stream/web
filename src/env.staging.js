@@ -5,7 +5,7 @@ export default {
     },
     name: '[s] meridian',
     stripe: {
-        publishable_key: "pk_test_51J7kf2GJpypwBcwPtbsoCuuzW8Fp6c5mM75mcb0KeWEBxDiDEQV1yPrOb9V3M5f3qOdVOt9ouAqMZyG57BDvNGZm00VAUoK6dv",
+        publishable_key: "pk_test_51NpsW2JqcSk0GONCq70FaoPlgKOhyczXMToxElBZWpPixIv4TpFVhXPZuZWFnHYvfznZUgpqXNDsUNFQKS6NVMQW005u5MRf87",
     },
     url: 'staging.meridian.stream',
     payout_threshold: 100,
