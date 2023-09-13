@@ -5,7 +5,7 @@
                 <h1>My Subscriptions</h1>
             </div>
             <div class="col-12 col-md-6 col-lg-4" v-for="(subscription, i) in authUser.subscriptions">
-                <div class="card">
+                <div class="card mb-3">
                     <div class="card-header text-center">
                         <ChannelBadge class="d-inline-block" v-if="subscription.channel.image !== null" :channel="subscription.channel" size="large"></ChannelBadge><br>
                         <h2>{{ subscription.channel.name }}</h2>
@@ -13,7 +13,7 @@
                     </div>
                     <div class="card-body">
                         <div v-if="subscription.cancelled_at !== null">
-                            <i class="fa-solid fa-circle-xmark text-danger"></i> Expires {{ subscription.nice_renews_at }}
+                            <i class="fa-solid fa-circle-xmark text-danger"></i> Expired {{ subscription.nice_renews_at }}
                         </div>
                         <div v-if="subscription.cancelled_at === null">
                             <i class="fa-solid fa-circle-check text-success"></i> Renews {{ subscription.nice_renews_at }}

@@ -55,6 +55,11 @@
                                 Add Card
                             </a>
                         </div>
+                        <div class="text-start mt-3">
+                            <GeneralErrors
+                                :form="this.createSubscriptionRequest"
+                            ></GeneralErrors>
+                        </div>
                     </div>
                     <div class="swiper-slide">c</div>
                 </div>
@@ -76,9 +81,11 @@
     import { loadStripe } from "@stripe/stripe-js";
     import env from "../../../env";
     import AddCard from "./AddCard.vue";
+    import GeneralErrors from "@/Views/Components/Form/GeneralErrors.vue";
 
     export default {
         components: {
+            GeneralErrors,
             AddCard,
             Popup,
             Image,
