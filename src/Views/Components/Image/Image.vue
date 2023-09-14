@@ -27,16 +27,29 @@
             };
         },
         mounted() {
-            setTimeout(() => {
-                this.showLoader = true
-            }, 125)
-            setTimeout(() => {
-                this.image = new Image;
-                this.image.onload = () => {
-                    this.url = this.image.src;
-                };
-                this.image.src = this.src;
-            }, this.delayTime);
+            const load = () => {
+                setTimeout(() => {
+                    this.showLoader = true
+                }, 125)
+                setTimeout(() => {
+                    this.image = new Image;
+                    this.image.onload = () => {
+                        this.url = this.image.src;
+                    };
+                    this.image.src = this.src;
+                }, this.delayTime);
+            }
+
+            let containerY = this.$el.parentElement.getBoundingClientRect().y;
+            if (containerY < window.innerHeight) {
+                load();
+            } else {
+                document.getElementById('app').addEventListener('scroll', e => {
+                    if (containerY < window.innerHeight + e.target.scrollTop) {
+                        load();
+                    }
+                });
+            }
         },
         props: [
             'alt',
