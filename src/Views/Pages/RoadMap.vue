@@ -19,9 +19,9 @@
                 <div class="card mb-3">
                     <div class="card-body">
                         <div class="progress mb-3">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 12.5%"></div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 12.5%"></div>
                             <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width: 12.5%"></div>
-                            <div class="progress-bar bg-light" role="progressbar" style="width: 12.5%"></div>
-                            <div class="progress-bar bg-light" role="progressbar" style="width: 12.5%"></div>
                             <div class="progress-bar bg-light" role="progressbar" style="width: 12.5%"></div>
                             <div class="progress-bar bg-light" role="progressbar" style="width: 12.5%"></div>
                             <div class="progress-bar bg-light" role="progressbar" style="width: 12.5%"></div>
