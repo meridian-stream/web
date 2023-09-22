@@ -1,4 +1,11 @@
 <template>
+    <div class="container py-3" v-if="content === null && getContentRequest.isLoading">
+        <div class="row justify-content-center">
+            <div class="col-12 col-xl-10 p-0 p-md-3 text-center">
+                <i class="fa-solid fa-spinner fa-pulse fa-2x"></i>
+            </div>
+        </div>
+    </div>
     <div class="container py-sm-3" v-if="content !== null">
         <div class="row justify-content-center mb-3">
             <div class="col-12 col-xl-10 p-0 p-md-3">
@@ -33,7 +40,7 @@
                         </div>
                         <Tags :tags="content.tags"></Tags>
                     </div>
-                    <div class="col-12 col-lg-4 col-xl-3 text-end">
+                    <div class="col-12 col-lg-4 col-xl-3 text-end mt-1 mt-sm-0">
                         <span class="col-form-label" v-if="content.rating > 0">
                             <Stars :content="content" class="mb-2"></Stars>
                         </span>

@@ -30,6 +30,7 @@
             }
         },
         mounted () {
+            this.getContentsRequest.isLoading = true;
             if (this.$route.query.withRegister === 'true') {
                 this.$emit('openRegister');
             }

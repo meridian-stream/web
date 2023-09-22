@@ -36,6 +36,7 @@
             },
         },
         mounted () {
+            this.request.isLoading = false;
             this.request.submitTo(Server.getInstance())
                 .then(response => {
                     this.contents = response.data;
