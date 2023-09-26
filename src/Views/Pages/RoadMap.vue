@@ -121,6 +121,7 @@
                                 <ul>
                                     <li>Theatre mode</li>
                                     <li>Looping video sections</li>
+                                    <li>Video rollover</li>
                                 </ul>
                             </li>
                         </ul>
@@ -146,6 +147,7 @@
                             <li>Channel customisation including banners and custom colours</li>
                             <li>Improved home page video sorting</li>
                             <li>Channel and user-defined playlists</li>
+                            <li>"Story mode" video player that allows viewer to make choices</li>
                         </ul>
                     </div>
                 </div>
