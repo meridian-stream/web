@@ -9,25 +9,28 @@
     <div class="container py-sm-3" v-if="content !== null">
         <div class="row justify-content-center mb-3">
             <div class="col-12 col-xl-10 p-0 p-md-3">
-                <div
-                    style="width: 100%; padding-top: 56.23%; overflow: hidden; position: relative"
-                    v-if="typeof content.video.url === 'undefined'"
-                >
-                    <Image
-                        :src="'/images/subscribers-only.svg'"
-                    ></Image>
-                    <div class="subscribers-only-label">
-                        <i class="fa-solid fa-lock text-secondary fa-2x" v-if="content.is_subscribers_only"></i><br><br>
-                        <span v-if="content.is_subscribers_only">This content is for <span class="text-secondary">{{ content.channel.name }}</span> subscribers only!</span>
-                    </div>
-                </div>
-                <video
-                    v-if="typeof content.video.url !== 'undefined'"
-                    id="video-player"
-                    controls="controls"
-                    :src="content.video.url"
-                    style="width: 100%;"
-                ></video>
+                <VideoPlayer
+                    :content="content"
+                ></VideoPlayer>
+<!--                <div-->
+<!--                    style="width: 100%; padding-top: 56.23%; overflow: hidden; position: relative"-->
+<!--                    v-if="typeof content.video.url === 'undefined'"-->
+<!--                >-->
+<!--                    <Image-->
+<!--                        :src="'/images/subscribers-only.svg'"-->
+<!--                    ></Image>-->
+<!--                    <div class="subscribers-only-label">-->
+<!--                        <i class="fa-solid fa-lock text-secondary fa-2x" v-if="content.is_subscribers_only"></i><br><br>-->
+<!--                        <span v-if="content.is_subscribers_only">This content is for <span class="text-secondary">{{ content.channel.name }}</span> subscribers only!</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <video-->
+<!--                    v-if="typeof content.video.url !== 'undefined'"-->
+<!--                    id="video-player"-->
+<!--                    controls="controls"-->
+<!--                    :src="content.video.url"-->
+<!--                    style="width: 100%;"-->
+<!--                ></video>-->
             </div>
         </div>
         <div class="row justify-content-center mb-2">
@@ -88,6 +91,7 @@
     import CreateViewRequest from "../../../Requests/CreateViewRequest";
     import UpdateViewRequest from "../../../Requests/UpdateViewRequest";
     import ReportButton from "../../Components/ReportButton/ReportButton.vue";
+    import VideoPlayer from "@/Views/Components/VideoPlayer/VideoPlayer.vue";
 
     export default {
         components: {
@@ -99,6 +103,7 @@
             LikeAndDislike,
             FollowButton,
             ReportButton,
+            VideoPlayer,
         },
         data () {
             return {
