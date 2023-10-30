@@ -1,7 +1,7 @@
 <template>
     <Popup
         :buttons="[
-            { text: 'Cancel', action: () => { $emit('close') }, type: 'dark text-light' },
+            // { text: 'Cancel', action: () => { $emit('close') }, type: 'dark text-light' },
             { text: 'Report', action: report, type: 'danger' },
         ]"
     >

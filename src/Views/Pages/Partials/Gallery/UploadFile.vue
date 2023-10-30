@@ -1,7 +1,5 @@
 <template>
-    <Popup :buttons="[
-        { text: 'Close', action: () => { $emit('close') }, type: 'dark text-light' }
-    ]">
+    <Popup>
         <p>Please ensure that...</p>
         <ul>
             <li>Videos do not exceed 1 hour in length</li>

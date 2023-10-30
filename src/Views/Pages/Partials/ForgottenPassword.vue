@@ -1,7 +1,7 @@
 <template>
     <Popup
         :buttons="[
-            { text: 'Close', action: () => { $emit('close') }, type: 'dark text-white' },
+            // { text: 'Close', action: () => { $emit('close') }, type: 'dark text-white' },
             { text: 'Reset Password', action: submit, type: 'primary', isLoading: forgottenPasswordRequest.isLoading }
         ]"
     >

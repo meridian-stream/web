@@ -3,7 +3,7 @@
         @close="$emit('close')"
         :hasClose="true"
         :buttons="[
-            { text: 'Close', action: () => { $emit('close') }, type: 'dark text-white' },
+            // { text: 'Close', action: () => { $emit('close') }, type: 'dark text-white' },
             { text: 'Log In', action: submit, type: 'primary', isLoading: loginRequest.isLoading },
         ]"
     >

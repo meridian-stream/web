@@ -1,6 +1,7 @@
 <template>
     <Popup
         @close="$emit('close')"
+        :has-close="false"
         :buttons="[
             { text: backButtonText, action: back, type: 'dark text-light' },
             { text: nextButtonText, action: submit, type: 'secondary' },

@@ -1,7 +1,5 @@
 <template>
-    <Popup :is-wide="true" v-if="folder !== null" :buttons="[
-        { text: 'Close', action: () => { this.$emit('close') }, type: 'dark text-light' },
-    ]">
+    <Popup :is-wide="true" v-if="folder !== null">
         <div class="controls mb-2">
             <div class="row">
                 <div class="col-6 col-form-label">

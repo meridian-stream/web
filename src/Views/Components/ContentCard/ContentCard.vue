@@ -50,7 +50,18 @@
                 let minutes = 0;
                 let seconds = 0;
 
-                let durationSeconds = this.content.video.duration;
+                let durationSeconds = 0;
+                if (this.content.sections.length === 1) {
+                    durationSeconds = this.content.sections[0].video.duration;
+                } else {
+                    for (let i = 0; i < this.content.sections.length; i++) {
+                        if (this.content.sections[i].type !== 1) {
+                            continue;
+                        }
+
+                        durationSeconds += this.content.sections[i].video.duration;
+                    }
+                }
 
                 hours = Math.floor(durationSeconds / 3600);
                 minutes = Math.floor(durationSeconds / 60);

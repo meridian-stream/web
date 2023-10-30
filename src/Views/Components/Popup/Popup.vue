@@ -9,6 +9,10 @@
                         </div>
                         <div class="card-footer text-end" v-if="(typeof buttons !== 'undefined' && buttons.length > 0)">
                             <div
+                                class="btn ms-1 btn-outline-dark text-light popup-close"
+                                @click="close"
+                            >Close</div>
+                            <div
                                 class="btn ms-1"
                                 :class="[ 'btn-outline-' + (button.type || 'dark') ]"
                                 @click="button.action"
@@ -50,6 +54,7 @@
         },
         props: [
             'buttons',
+            'hasClose',
             'isWide',
         ],
     }

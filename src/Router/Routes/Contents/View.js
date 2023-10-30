@@ -1,4 +1,4 @@
-import View from "../../../Views/Pages/Contents/View.vue";
+import View from "../../../Views/Pages/Contents/View2.vue";
 
 export default {
     path: '/contents/:id',
