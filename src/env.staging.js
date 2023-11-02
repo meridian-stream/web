@@ -1,4 +1,5 @@
 export default {
+    env: 'staging',
     api: {
         endpoint: 'https://api.staging.meridian.stream',
         timeout: 5000,

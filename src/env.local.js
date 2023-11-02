@@ -1,4 +1,5 @@
 export default {
+    env: 'local',
     api: {
         endpoint: 'http://api.localhost:8000',
         timeout: 5000,
