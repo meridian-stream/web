@@ -7,9 +7,9 @@
         </div>
         <div class="row justify-content-center" v-if="content !== null">
             <div class="col-12 col-xl-10 p-0 p-md-3">
-                <iPlayer
+                <mPlayer
                     :content="content"
-                ></iPlayer>
+                ></mPlayer>
             </div>
         </div>
     </div>
@@ -18,11 +18,11 @@
 <script>
     import GetContentRequest from "@/Requests/GetContentRequest.js";
     import Server from "@/Servers/Server.js";
-    import iPlayer from '@/Views/Components/iPlayer/iPlayer.vue';
+    import mPlayer from '@/Views/Components/iPlayer/mPlayer.vue';
 
     export default {
         components: {
-            iPlayer,
+            mPlayer,
         },
         data () {
             return {
